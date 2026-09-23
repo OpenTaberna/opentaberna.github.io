@@ -1,8 +1,8 @@
 title: "OpenTaberna"
-tagline: "Open commerce, automated end to end."
+tagline: "Open-source, self-hosted headless shop system"
 description: >-
-  OpenTaberna is a headless, fully open-source shop system focused on automating
-  the commerce workflow end to end.
+  OpenTaberna is an open-source, self-hosted headless shop system: build a modern,
+  custom web shop and automate e-commerce end to end. A free Shopware alternative.
 url: "https://opentaberna.de"
 baseurl: ""
 lang: en

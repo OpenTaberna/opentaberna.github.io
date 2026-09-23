@@ -149,6 +149,17 @@ if index
   present_positions = positions.map(&:last).compact
   fail!("index.html: required sections are out of order") unless present_positions == present_positions.sort
 
+  title = index[%r{<title>(.*?)</title>}m, 1].to_s
+  description = index[/<meta name="description" content="([^"]*)"/, 1].to_s
+  h1 = index[%r{<h1[^>]*>(.*?)</h1>}m, 1].to_s
+  {
+    "title" => [title, %w[open-source self-hosted headless shop]],
+    "meta description" => [description, %w[open-source self-hosted headless shop]],
+    "h1" => [h1, %w[open-source headless shop]],
+  }.each do |name, (text, terms)|
+    terms.each { |term| fail!("index.html: #{name} has lost the search term #{term.inspect}") unless text.downcase.include?(term) }
+  end
+
   %w[
     https://github.com/OpenTaberna/fastapi
     https://github.com/OpenTaberna/frontend

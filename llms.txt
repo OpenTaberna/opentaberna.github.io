@@ -5,7 +5,7 @@ sitemap: false
 ---
 # OpenTaberna
 
-> OpenTaberna is a headless, fully open-source shop system focused on automating the commerce workflow end to end. The project exists as an open alternative to expensive, hard-to-integrate commerce platforms.
+> OpenTaberna is an open-source, self-hosted headless shop system: build a modern, custom web shop and automate e-commerce end to end. A free Shopware alternative. The project exists as an open alternative to expensive, hard-to-integrate commerce platforms such as Shopware.
 
 ## Project repositories
 

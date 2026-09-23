@@ -15,7 +15,9 @@ bundle install
 ```
 
 The command builds `_site`, validates internal links and markup, and runs the
-project-specific structural checks.
+project-specific structural checks. Those checks include the search terms the
+home page must keep in its title, meta description and H1 (open-source,
+self-hosted, headless, shop), so a copy edit cannot silently drop them.
 
 ## Publishing
 
