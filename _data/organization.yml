@@ -4,8 +4,8 @@
 name: "OpenTaberna"
 url: "https://opentaberna.de"
 description: >-
-  A headless, fully open-source shop system focused on automating the commerce
-  workflow end to end.
+  An open-source, self-hosted headless shop system for building a modern, custom
+  web shop and automating e-commerce end to end.
 logo: "https://opentaberna.de/wiki/taberna_logo.png"
 email: "mailto:root@vaultops.de"
 sameAs:

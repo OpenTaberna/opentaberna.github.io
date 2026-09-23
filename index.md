@@ -3,15 +3,15 @@ layout: default
 title: OpenTaberna
 permalink: /
 description: >-
-  OpenTaberna is a headless, fully open-source shop system focused on automating
-  the commerce workflow end to end.
+  OpenTaberna is an open-source, self-hosted headless shop system: build a modern,
+  custom web shop and automate e-commerce end to end. A free Shopware alternative.
 ---
 
 <section class="hero" aria-labelledby="hero-title">
   <div>
-    <p class="eyebrow">Open-source commerce infrastructure</p>
-    <h1 id="hero-title">A shop system you can actually make your own.</h1>
-    <p class="lede">OpenTaberna is a headless, fully open-source shop system built to automate the commerce workflow end to end.</p>
+    <p class="eyebrow">Open-source e-commerce, self-hosted</p>
+    <h1 id="hero-title">The open-source headless shop system you can make your own.</h1>
+    <p class="lede">OpenTaberna is a modern, self-hosted web shop platform: headless e-commerce that is open source all the way down and automates the commerce workflow end to end.</p>
   </div>
   <img class="hero-logo" src="/wiki/taberna_logo.png" alt="OpenTaberna logo" width="1024" height="1024">
 </section>
@@ -19,12 +19,14 @@ description: >-
 ## What OpenTaberna is
 
 We started OpenTaberna because Shopware is expensive and incompatible with nearly
-everything we needed to connect. OpenTaberna separates the storefront, administration
-and backend, then puts automation at the centre: from catalogue and checkout to stock,
-payment and fulfilment.
+everything we needed to connect, so we built an open-source Shopware alternative.
+OpenTaberna separates the storefront, administration and backend, then puts automation
+at the centre: from catalogue and checkout to stock, payment and fulfilment.
 
-It is headless by design and open all the way down. You choose the interfaces, services
-and deployment model around it instead of adapting your operation to a closed product.
+It is a headless shop by design and self-hosted by default. You run it on your own
+servers, choose the interfaces, services and deployment around it, and build the
+custom web shop your business needs instead of adapting your operation to a closed
+product.
 
 ## What it is made of
 
