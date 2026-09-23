@@ -50,3 +50,13 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
+
+      - name: HTTP must redirect to HTTPS
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            location=$(curl -sI http://opentaberna.de/ | tr -d '\r' | awk 'tolower($1)=="location:"{print $2}')
+            [ "$location" = "https://opentaberna.de/" ] && exit 0
+            sleep 10
+          done
+          echo "http://opentaberna.de/ redirects to '${location}', expected https://opentaberna.de/"
+          exit 1
