@@ -49,6 +49,18 @@ product.
   </li>
 </ul>
 
+## What it runs on
+
+A self-hosted e-commerce stack built from well-known open-source parts, started with
+Docker Compose:
+
+- **Backend:** Python and FastAPI, with async SQLAlchemy on PostgreSQL and Redis for background jobs.
+- **Storefront and back office:** Angular, talking to the API. It is headless, so you can bring your own frontend.
+- **Accounts:** Keycloak single sign-on for customers and staff.
+- **Payment and shipping:** Stripe for payments, DHL for shipping.
+- **Documents and files:** Paperless-ngx for accounting documents, MinIO as S3-compatible storage.
+- **Operations:** Prometheus, Grafana and OpenTelemetry.
+
 ## How to start
 
 <div class="callout">

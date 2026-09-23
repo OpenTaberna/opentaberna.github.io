@@ -52,6 +52,18 @@ an ein geschlossenes Produkt anzupassen.
   </li>
 </ul>
 
+## Worauf es läuft
+
+Ein selbst gehosteter E-Commerce-Stack aus bewährten Open-Source-Bausteinen, gestartet
+mit Docker Compose:
+
+- **Backend:** Python und FastAPI, mit asynchronem SQLAlchemy auf PostgreSQL und Redis für Hintergrundjobs.
+- **Storefront und Backoffice:** Angular, angebunden über die API. Es ist headless, du kannst also dein eigenes Frontend mitbringen.
+- **Konten:** Keycloak-Single-Sign-on für Kundschaft und Team.
+- **Zahlung und Versand:** Stripe für Zahlungen, DHL für den Versand.
+- **Dokumente und Dateien:** Paperless-ngx für Buchhaltungsbelege, MinIO als S3-kompatibler Speicher.
+- **Betrieb:** Prometheus, Grafana und OpenTelemetry.
+
 ## So fängst du an
 
 <div class="callout">

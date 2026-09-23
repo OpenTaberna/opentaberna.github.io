@@ -11,7 +11,8 @@ The project documentation remains in the
 Both carry `hreflang` alternates and a language switch; the layout picks its few
 interface strings from the page's `lang`. A content change to one page belongs in
 the other in the same change. `check_site.rb` fails if the German page, its
-alternates or its search terms go missing.
+alternates or its search terms go missing, and if either page or `llms.txt`
+loses the stack section (the terms are listed in `STACK` in that script).
 
 ## Local verification
 
