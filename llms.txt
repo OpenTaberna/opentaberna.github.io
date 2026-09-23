@@ -16,6 +16,16 @@ A German version of the website is at {{ site.url }}/de/.
 - [admin_frontend](https://github.com/OpenTaberna/admin_frontend): Role-protected back office for products, inventory, orders and returns.
 - [wiki](https://github.com/OpenTaberna/wiki): Source-controlled documentation for setup, architecture and operation.
 
+## Stack
+
+- Backend: Python, FastAPI, async SQLAlchemy, PostgreSQL, Redis for background jobs.
+- Storefront and back office: Angular (headless; any frontend can use the API).
+- Accounts: Keycloak single sign-on.
+- Payment and shipping: Stripe, DHL.
+- Documents and files: Paperless-ngx, MinIO (S3-compatible).
+- Operations: Prometheus, Grafana, OpenTelemetry.
+- Deployment: self-hosted with Docker Compose.
+
 ## Documentation
 
 The [OpenTaberna wiki](https://wiki.opentaberna.de) is the project's documentation site and single source of truth. Begin with the [Getting Started guide](https://github.com/OpenTaberna/wiki/blob/main/Getting-Started.md). This website deliberately does not duplicate those instructions.

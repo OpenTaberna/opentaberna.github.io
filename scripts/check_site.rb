@@ -84,6 +84,18 @@ languages.each do |path, expected|
   fail!("#{path}: has lost the language switch to #{expected[:switch]}") unless html.match?(/<a class="[^"]*\blang-switch\b[^"]*"[^>]*href="#{Regexp.escape(expected[:switch])}"/)
 end
 
+STACK = [
+  "FastAPI", "PostgreSQL", "Redis", "Keycloak", "Angular", "Stripe", "DHL",
+  "Paperless-ngx", "MinIO", "Prometheus", "Grafana", "OpenTelemetry", "Docker Compose",
+].freeze
+{ "index.html" => "What it runs on", "de/index.html" => "Worauf es läuft", "llms.txt" => "## Stack" }.each do |path, heading|
+  text = read(path)
+  next unless text
+
+  fail!("#{path}: has lost the #{heading.inspect} section") unless text.include?(heading)
+  STACK.each { |term| fail!("#{path}: stack section has lost #{term.inspect}") unless text.include?(term) }
+end
+
 german = read("de/index.html")
 if german
   h1 = german[%r{<h1[^>]*>(.*?)</h1>}m, 1].to_s.downcase
@@ -170,6 +182,7 @@ if index
   sections = [
     "What OpenTaberna is",
     "What it is made of",
+    "What it runs on",
     "How to start",
     "Licence and intent",
     "Founders",
