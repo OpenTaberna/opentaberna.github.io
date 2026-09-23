@@ -1,46 +1,65 @@
 <!DOCTYPE html>
-{%- assign de = page.lang == "de" -%}
-<html lang="{{ page.lang | default: site.lang }}">
+{%- assign lang = page.lang | default: site.lang -%}
+{%- assign t = site.data.i18n[lang] %}
+<html lang="{{ lang }}">
 {%- include head.html -%}
 <body>
-  <a class="skip-link" href="#content">{% if de %}Zum Inhalt springen{% else %}Skip to content{% endif %}</a>
+  <a class="skip-link" href="#content">{{ t.skip }}</a>
 
   <header class="masthead">
-    <a class="brand" href="{{ page.url }}" aria-label="{% if de %}OpenTaberna Startseite{% else %}OpenTaberna home{% endif %}">
-      <img src="{{ '/wiki/taberna_logo.png' | relative_url }}" alt="" width="42" height="42">
-      <span>
-        <span class="brand-name">OpenTaberna</span>
-        <span class="brand-note">{% if de %}Open-Source-E-Commerce{% else %}Open-source commerce{% endif %}</span>
-      </span>
-    </a>
-    <nav class="header-nav">
-      {%- if de %}
-      <a class="header-link lang-switch" href="{{ '/' | relative_url }}" hreflang="en" lang="en">English</a>
-      {%- else %}
-      <a class="header-link lang-switch" href="{{ '/de/' | relative_url }}" hreflang="de" lang="de">Deutsch</a>
-      {%- endif %}
-      <a class="header-link" href="{{ site.organization.github }}">GitHub</a>
-    </nav>
+    <div class="wrap masthead-inner">
+      <a class="brand" href="{{ t.home }}" aria-label="OpenTaberna">
+        <img src="{{ '/wiki/taberna_logo.png' | relative_url }}" alt="" width="36" height="36">
+        <span>
+          <span class="brand-name">OpenTaberna</span>
+          <span class="brand-note">{{ t.brand_note }}</span>
+        </span>
+      </a>
+      <nav class="header-nav" aria-label="{{ t.nav_services }}">
+        <a class="nav-link nav-optional" href="{{ t.home }}#features">{{ t.nav_features }}</a>
+        <a class="nav-link nav-optional" href="{{ t.home }}#offers">{{ t.nav_services }}</a>
+        <a class="nav-link nav-optional" href="{{ t.developers }}">{{ t.nav_developers }}</a>
+        {%- if page.alt_url %}
+        <a class="nav-link lang-switch" href="{{ page.alt_url }}" hreflang="{{ t.lang_switch_code }}" lang="{{ t.lang_switch_code }}">{{ t.lang_switch }}</a>
+        {%- endif %}
+        <a class="button button-small button-primary" href="{% include mailto.html t=t kind='general' %}">{{ t.nav_cta }}</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="content" class="content">
+  <main id="content">
     {{ content }}
   </main>
 
   <footer class="site-foot">
-    <div>
-      <p class="footer-label">OpenTaberna</p>
-      <p>{% if de %}Headless-Commerce, offen von Anfang bis Ende.{% else %}Headless commerce, open from end to end.{% endif %}</p>
-    </div>
-    <div>
-      <p class="footer-label">{% if de %}Für Maschinen{% else %}For machines{% endif %}</p>
-      <p><a href="{{ '/llms.txt' | relative_url }}">llms.txt</a> · <a href="{{ '/sitemap.xml' | relative_url }}">sitemap.xml</a></p>
-    </div>
-    <div>
-      <p class="footer-label">{% if de %}Kontakt{% else %}Contact{% endif %}</p>
-      <p><a href="mailto:{{ site.organization.email }}">{{ site.organization.email }}</a></p>
+    <div class="wrap foot-grid">
+      <div>
+        <p class="foot-brand">OpenTaberna</p>
+        <p>{{ t.foot_tagline }}</p>
+      </div>
+      <div>
+        <p class="foot-label">{{ t.foot_project }}</p>
+        <ul>
+          <li><a href="{{ t.developers }}">{{ t.nav_developers }}</a></li>
+          <li><a href="{{ site.organization.github }}">GitHub</a></li>
+          <li><a href="{{ site.organization.wiki }}">Wiki</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot-label">{{ t.foot_legal }}</p>
+        <ul>
+          <li><a href="/impressum/">{{ t.legal_notice }}</a></li>
+          <li><a href="/datenschutz/">{{ t.privacy }}</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot-label">{{ t.foot_contact }}</p>
+        <ul>
+          <li><a href="mailto:{{ site.organization.email }}">{{ site.organization.email }}</a></li>
+          <li class="foot-small">{{ t.foot_machines }}: <a href="{{ '/llms.txt' | relative_url }}">llms.txt</a> · <a href="{{ '/sitemap.xml' | relative_url }}">sitemap.xml</a></li>
+        </ul>
+      </div>
     </div>
   </footer>
 </body>
 </html>
-

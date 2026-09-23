@@ -1,0 +1,3 @@
+{%- assign m = include.t.mail[include.kind] -%}
+mailto:{{ site.organization.email }}?subject={{ m.subject | url_encode | replace: '+', '%20' }}&amp;body={{ m.body | url_encode | replace: '+', '%20' }}
+{%- comment -%} url_encode turns spaces into "+", which mail clients keep literally; a real "+" is already %2B. {%- endcomment -%}

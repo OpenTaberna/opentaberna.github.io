@@ -9,9 +9,12 @@
   <meta name="author" content="OpenTaberna">
   <meta name="theme-color" content="#ff6410">
   <link rel="canonical" href="{{ page_url }}">
-  <link rel="alternate" hreflang="en" href="{{ '/' | absolute_url }}">
-  <link rel="alternate" hreflang="de" href="{{ '/de/' | absolute_url }}">
-  <link rel="alternate" hreflang="x-default" href="{{ '/' | absolute_url }}">
+  {%- if page.alt_url %}
+  {%- if page.lang == "de" %}{% assign en_url = page.alt_url %}{% assign de_url = page.url %}{% else %}{% assign en_url = page.url %}{% assign de_url = page.alt_url %}{% endif %}
+  <link rel="alternate" hreflang="en" href="{{ en_url | absolute_url }}">
+  <link rel="alternate" hreflang="de" href="{{ de_url | absolute_url }}">
+  <link rel="alternate" hreflang="x-default" href="{{ en_url | absolute_url }}">
+  {%- endif %}
   <link rel="describedby" type="text/markdown" href="{{ '/llms.txt' | absolute_url }}">
 
   <meta property="og:type" content="website">
@@ -19,15 +22,15 @@
   <meta property="og:title" content="{{ page_title | escape }}">
   <meta property="og:description" content="{{ page_desc | escape }}">
   <meta property="og:url" content="{{ page_url }}">
-  <meta property="og:image" content="{{ '/wiki/taberna_logo.png' | absolute_url }}">
+  <meta property="og:image" content="{{ '/assets/img/og.jpg' | absolute_url }}">
   {%- if page.lang == "de" %}
   <meta property="og:locale" content="de_DE">
-  <meta property="og:locale:alternate" content="en_GB">
+  {%- if page.alt_url %}<meta property="og:locale:alternate" content="en_GB">{% endif %}
   {%- else %}
   <meta property="og:locale" content="en_GB">
-  <meta property="og:locale:alternate" content="de_DE">
+  {%- if page.alt_url %}<meta property="og:locale:alternate" content="de_DE">{% endif %}
   {%- endif %}
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="{{ '/wiki/taberna_logo.png' | relative_url }}" type="image/png">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
