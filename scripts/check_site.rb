@@ -106,9 +106,9 @@ if organization
 
   founders = Array(organization["founder"])
   philipp = founders.find { |founder| founder["@id"] == "https://philipptheserver.com/#person" }
-  maltonoloco = founders.find { |founder| founder["name"] == "maltonoloco" }
+  malte = founders.find { |founder| founder["name"] == "Malte Kottmann" }
   fail!("JSON-LD has lost Philipp Lehmann's Person node") unless philipp
-  fail!("JSON-LD has lost maltonoloco's Person node") unless maltonoloco
+  fail!("JSON-LD has lost Malte Kottmann's Person node") unless malte
 
   if philipp
     fail!("JSON-LD Philipp URL is wrong") unless philipp["url"] == "https://philipptheserver.com"
@@ -123,8 +123,11 @@ if organization
     end
   end
 
-  if maltonoloco && !Array(maltonoloco["sameAs"]).include?("https://github.com/maltonoloco")
-    fail!("JSON-LD maltonoloco GitHub profile is missing")
+  if malte
+    fail!("JSON-LD Malte Kottmann alternate name is missing") unless malte["alternateName"] == "maltonoloco"
+    unless Array(malte["sameAs"]).include?("https://github.com/maltonoloco")
+      fail!("JSON-LD Malte Kottmann GitHub profile is missing")
+    end
   end
 end
 

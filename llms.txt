@@ -25,7 +25,7 @@ OpenTaberna is entirely open source. The founders are not seeking to make money 
 ## Founders
 
 - [Philipp Lehmann](https://philipptheserver.com): [GitHub](https://github.com/PhilippTheServer), [ORCID 0009-0002-3922-2471](https://orcid.org/0009-0002-3922-2471).
-- [maltonoloco](https://github.com/maltonoloco): OpenTaberna co-founder and contributor.
+- [Malte Kottmann](https://github.com/maltonoloco) (`maltonoloco`): OpenTaberna founder and contributor.
 
 ## Contact
 

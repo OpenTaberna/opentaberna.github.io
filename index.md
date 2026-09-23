@@ -65,15 +65,15 @@ to the licences in its repositories.
 
 <div class="people">
   <article class="person">
-    <p class="person-role">Co-founder</p>
+    <p class="person-role">Founder</p>
     <h3><a href="https://philipptheserver.com">Philipp Lehmann</a></h3>
     <p>Infrastructure engineer and open-source builder.</p>
     <p class="person-links"><a href="https://github.com/PhilippTheServer">GitHub</a> · <a href="https://orcid.org/0009-0002-3922-2471">ORCID</a></p>
   </article>
   <article class="person">
-    <p class="person-role">Co-founder</p>
-    <h3><a href="https://github.com/maltonoloco">maltonoloco</a></h3>
-    <p>OpenTaberna co-founder and contributor.</p>
+    <p class="person-role">Founder</p>
+    <h3><a href="https://github.com/maltonoloco">Malte Kottmann</a></h3>
+    <p>OpenTaberna founder and contributor.</p>
     <p class="person-links"><a href="https://github.com/maltonoloco">GitHub</a></p>
   </article>
 </div>

@@ -24,7 +24,7 @@ founder:
       value: "https://orcid.org/0009-0002-3922-2471"
       url: "https://orcid.org/0009-0002-3922-2471"
   - "@type": "Person"
-    name: "maltonoloco"
+    name: "Malte Kottmann"
+    alternateName: "maltonoloco"
     sameAs:
       - "https://github.com/maltonoloco"
-
