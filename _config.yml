@@ -1,0 +1,29 @@
+title: "OpenTaberna"
+tagline: "Open commerce, automated end to end."
+description: >-
+  OpenTaberna is a headless, fully open-source shop system focused on automating
+  the commerce workflow end to end.
+url: "https://opentaberna.de"
+baseurl: ""
+lang: en
+timezone: Europe/Berlin
+
+organization:
+  email: "root@vaultops.de"
+  github: "https://github.com/OpenTaberna"
+  wiki: "https://wiki.opentaberna.de"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - scripts/
+  - README.md
+

@@ -1,0 +1,34 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+# OpenTaberna
+
+> OpenTaberna is a headless, fully open-source shop system focused on automating the commerce workflow end to end. The project exists as an open alternative to expensive, hard-to-integrate commerce platforms.
+
+## Project repositories
+
+- [fastapi](https://github.com/OpenTaberna/fastapi): Python backend for the API, commerce domain, integrations and automated order workflow.
+- [frontend](https://github.com/OpenTaberna/frontend): Angular customer storefront for catalogue, accounts, cart and checkout.
+- [admin_frontend](https://github.com/OpenTaberna/admin_frontend): Role-protected back office for products, inventory, orders and returns.
+- [wiki](https://github.com/OpenTaberna/wiki): Source-controlled documentation for setup, architecture and operation.
+
+## Documentation
+
+The [OpenTaberna wiki](https://wiki.opentaberna.de) is the project's documentation site and single source of truth. Begin with the [Getting Started guide](https://github.com/OpenTaberna/wiki/blob/main/Getting-Started.md). This website deliberately does not duplicate those instructions.
+
+## Licence and intent
+
+OpenTaberna is entirely open source. The founders are not seeking to make money from the project. People may run, fork, maintain or sell it on, subject to the licences in its repositories.
+
+## Founders
+
+- [Philipp Lehmann](https://philipptheserver.com): [GitHub](https://github.com/PhilippTheServer), [ORCID 0009-0002-3922-2471](https://orcid.org/0009-0002-3922-2471).
+- [maltonoloco](https://github.com/maltonoloco): OpenTaberna co-founder and contributor.
+
+## Contact
+
+- Organization: [OpenTaberna on GitHub](https://github.com/OpenTaberna)
+- Email: root@vaultops.de
+- Canonical organization identifier: {{ site.url }}/#organization

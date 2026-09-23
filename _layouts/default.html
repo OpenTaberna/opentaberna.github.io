@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+{%- include head.html -%}
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="masthead">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="OpenTaberna home">
+      <img src="{{ '/wiki/taberna_logo.png' | relative_url }}" alt="" width="42" height="42">
+      <span>
+        <span class="brand-name">OpenTaberna</span>
+        <span class="brand-note">Open-source commerce</span>
+      </span>
+    </a>
+    <a class="header-link" href="{{ site.organization.github }}">GitHub</a>
+  </header>
+
+  <main id="content" class="content">
+    {{ content }}
+  </main>
+
+  <footer class="site-foot">
+    <div>
+      <p class="footer-label">OpenTaberna</p>
+      <p>Headless commerce, open from end to end.</p>
+    </div>
+    <div>
+      <p class="footer-label">For machines</p>
+      <p><a href="{{ '/llms.txt' | relative_url }}">llms.txt</a> · <a href="{{ '/sitemap.xml' | relative_url }}">sitemap.xml</a></p>
+    </div>
+    <div>
+      <p class="footer-label">Contact</p>
+      <p><a href="mailto:{{ site.organization.email }}">{{ site.organization.email }}</a></p>
+    </div>
+  </footer>
+</body>
+</html>
+
