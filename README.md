@@ -22,7 +22,8 @@ project-specific structural checks.
 Pushes to `main` run `.github/workflows/deploy.yml`. The workflow verifies the
 site before it uploads and deploys the GitHub Pages artifact. Pages must use
 **GitHub Actions** as its source, with the custom domain `opentaberna.de` and
-**Enforce HTTPS** enabled.
+**Enforce HTTPS** enabled. After each deploy the workflow checks that
+`http://opentaberna.de/` redirects to HTTPS and fails if it does not.
 
 The repository's `CNAME` file is in place. The apex and `www` DNS records can
 therefore be added as documented in the project issue; the `wiki` subdomain is
