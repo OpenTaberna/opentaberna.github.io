@@ -1,0 +1,175 @@
+{%- assign t = site.data.i18n[page.lang] -%}
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">{{ t.hero.eyebrow }}</p>
+      <h1 id="hero-title">{{ t.hero.title }}</h1>
+      <p class="lede">{{ t.hero.lede }}</p>
+      <div class="actions">
+        <a class="button button-primary" href="{% include mailto.html t=t kind='general' %}">{% include icon.html name='mail' %}{{ t.hero.cta }}</a>
+        <a class="button button-ghost" href="#features">{{ t.hero.secondary }}</a>
+      </div>
+      <p class="hero-note">{{ t.hero.note }}</p>
+    </div>
+    <div class="hero-shots">
+      {% include frame.html image='store-shop.webp' height=1178 alt=t.hero.shop_alt label=t.frame_store loading='eager' %}
+      {% include frame.html image='admin-dashboard.webp' alt=t.hero.admin_alt label=t.frame_admin class='frame-float' %}
+    </div>
+  </div>
+</section>
+
+<section class="trust" id="trust" aria-label="{{ t.hero.note | escape }}">
+  <ul class="wrap trust-list">
+    {%- for item in t.trust %}
+    <li>{% include icon.html name=item.icon %}<span>{{ item.text }}</span></li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="band" id="features" aria-labelledby="features-title">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">{{ t.features.eyebrow }}</p>
+      <h2 id="features-title">{{ t.features.title }}</h2>
+      <p class="lede">{{ t.features.lede }}</p>
+    </header>
+    {%- for row in t.features.rows %}
+    <div class="feature-row{% cycle '', ' feature-row-flip' %}">
+      <div class="feature-copy">
+        <h3>{{ row.title }}</h3>
+        <p>{{ row.text }}</p>
+      </div>
+      {%- assign label = t.frame_store -%}
+      {%- if row.frame == 'admin' -%}{%- assign label = t.frame_admin -%}{%- endif %}
+      {% include frame.html image=row.image alt=row.alt label=label %}
+    </div>
+    {%- endfor %}
+    <ul class="feature-grid">
+      {%- for item in t.features.items %}
+      <li>
+        <span class="feature-icon">{% include icon.html name=item.icon %}</span>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="band band-sunk" id="offers" aria-labelledby="offers-title">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">{{ t.offers.eyebrow }}</p>
+      <h2 id="offers-title">{{ t.offers.title }}</h2>
+      <p class="lede">{{ t.offers.lede }}</p>
+    </header>
+    <ul class="offers">
+      {%- for offer in t.offers.items %}
+      <li class="offer{% if offer.featured %} offer-featured{% endif %}">
+        <p class="offer-price">{{ offer.price }}</p>
+        <h3>{{ offer.name }}</h3>
+        <p class="offer-text">{{ offer.text }}</p>
+        <ul class="checks">
+          {%- for point in offer.points %}
+          <li>{% include icon.html name='check' %}{{ point }}</li>
+          {%- endfor %}
+        </ul>
+        {%- if offer.mail %}
+        <a class="button {% if offer.featured %}button-primary{% else %}button-dark{% endif %}" href="{% include mailto.html t=t kind=offer.mail %}">{{ offer.link_text }}</a>
+        {%- else %}
+        <a class="button button-ghost" href="{{ offer.link }}">{{ offer.link_text }}</a>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="band band-dark" id="custom-frontend" aria-labelledby="custom-title">
+  <div class="wrap feature-row">
+    <div class="feature-copy">
+      <p class="eyebrow">{{ t.custom.eyebrow }}</p>
+      <h2 id="custom-title">{{ t.custom.title }}</h2>
+      <p>{{ t.custom.text }}</p>
+      <ul class="checks">
+        {%- for point in t.custom.points %}
+        <li>{% include icon.html name='check' %}{{ point }}</li>
+        {%- endfor %}
+      </ul>
+      <a class="button button-primary" href="{% include mailto.html t=t kind='frontend' %}">{{ t.custom.cta }}</a>
+    </div>
+    {% include frame.html image='store-cart.webp' alt=t.custom.alt label=t.frame_store %}
+  </div>
+</section>
+
+<section class="band" id="compare" aria-labelledby="compare-title">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">{{ t.compare.eyebrow }}</p>
+      <h2 id="compare-title">{{ t.compare.title }}</h2>
+    </header>
+    <div class="table-scroll" role="region" aria-labelledby="compare-title" tabindex="0">
+      <table class="compare">
+        <thead>
+          <tr><td></td>{% for column in t.compare.columns %}<th scope="col"{% if forloop.first %} class="ours"{% endif %}>{{ column }}</th>{% endfor %}</tr>
+        </thead>
+        <tbody>
+          {%- for row in t.compare.rows %}
+          <tr><th scope="row">{{ row.label }}</th>{% for cell in row.cells %}<td{% if forloop.first %} class="ours"{% endif %}>{{ cell }}</td>{% endfor %}</tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="sources">{{ t.compare.sources_label }} {% for source in t.compare.sources %}<a href="{{ source.url }}">{{ source.text }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+  </div>
+</section>
+
+<section class="band band-sunk" id="faq" aria-labelledby="faq-title">
+  <div class="wrap narrow">
+    <header class="section-head">
+      <p class="eyebrow">{{ t.faq.eyebrow }}</p>
+      <h2 id="faq-title">{{ t.faq.title }}</h2>
+    </header>
+    <div class="faq">
+      {%- for item in t.faq.items %}
+      <details>
+        <summary>{{ item.q }}</summary>
+        <p>{{ item.a }}</p>
+      </details>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" id="get-started" aria-labelledby="start-title">
+  <div class="wrap cta-inner">
+    <div>
+      <h2 id="start-title">{{ t.get_started.title }}</h2>
+      <p>{{ t.get_started.text }}</p>
+    </div>
+    <div class="cta-actions">
+      <a class="button button-primary button-large" href="{% include mailto.html t=t kind='general' %}">{% include icon.html name='mail' %}{{ t.get_started.cta }}</a>
+      <p>{{ t.get_started.or }} <a href="mailto:{{ site.organization.email }}">{{ site.organization.email }}</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="founders" aria-labelledby="founders-title">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">{{ t.founders.eyebrow }}</p>
+      <h2 id="founders-title">{{ t.founders.title }}</h2>
+      <p class="lede">{{ t.founders.text }}</p>
+    </header>
+    <div class="people">
+      {%- for person in t.founders.people %}
+      <article class="person">
+        <p class="person-role">{{ person.role }}</p>
+        <h3><a href="{{ person.url }}">{{ person.name }}</a></h3>
+        <p>{{ person.text }}</p>
+        <p class="person-links">{% for link in person.links %}<a href="{{ link.url }}">{{ link.text }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

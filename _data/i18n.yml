@@ -1,0 +1,430 @@
+# Interface strings and landing-page copy, one block per language. Both landing
+# pages render _includes/landing.html from this file, so they cannot drift apart.
+
+en:
+  home: /
+  developers: /developers/
+  skip: Skip to content
+  brand_note: Open-source commerce
+  nav_features: Features
+  nav_services: Services
+  nav_developers: Developers
+  nav_cta: Get your shop
+  lang_switch: Deutsch
+  lang_switch_code: de
+  foot_tagline: A free, open-source shop system. Setup, hosting in Germany and custom storefronts by vaultops.
+  foot_project: Project
+  foot_legal: Legal
+  foot_contact: Contact
+  foot_machines: For machines
+  legal_notice: Legal notice (Impressum)
+  privacy: Privacy policy (Datenschutz)
+  frame_store: Your storefront
+  frame_admin: Your back office
+
+  mail:
+    general:
+      subject: "OpenTaberna: I would like my own shop"
+      body: "Hi,\n\nI am interested in a shop built on OpenTaberna.\n\nWhat I sell:\nNumber of products:\nOrders per month (roughly):\nCurrent shop system, if any:\nTimeline:\n\nBest regards\n"
+    setup:
+      subject: "OpenTaberna: set up on my server"
+      body: "Hi,\n\nplease send me a quote for setting up OpenTaberna on my own server.\n\nServer / provider:\nWhat I sell:\nNumber of products:\nPayment and shipping providers:\nTimeline:\n\nBest regards\n"
+    hosting:
+      subject: "OpenTaberna: hosting for my shop"
+      body: "Hi,\n\nplease send me a quote for hosting an OpenTaberna shop for me.\n\nWhat I sell:\nNumber of products:\nOrders per month (roughly):\nDomain (existing or wanted):\nTimeline:\n\nBest regards\n"
+    frontend:
+      subject: "OpenTaberna: custom storefront"
+      body: "Hi,\n\nI would like a custom storefront for OpenTaberna.\n\nBrand / website today:\nDesigns or examples I like:\nPages and features I need:\nTimeline:\n\nBest regards\n"
+
+  hero:
+    eyebrow: Headless shop system · self-hosted · free
+    title: Your own open-source shop. No licence fees. No lock-in.
+    lede: OpenTaberna is a modern web shop you can run on your own server, free and open source. Or let us set it up, host it in Germany and design a storefront that looks like your brand.
+    cta: Get your shop
+    secondary: See what is inside
+    note: Free software. You pay only for the help you want.
+    shop_alt: The OpenTaberna storefront showing a product grid of wines and delicatessen with prices and "Add to bag" buttons.
+    admin_alt: The OpenTaberna back office dashboard with revenue, open payments, shipments to go out and products that need restocking.
+
+  trust:
+    - icon: gift
+      text: Free forever
+    - icon: code
+      text: Open source, Apache-2.0
+    - icon: flag
+      text: Hosted in Germany
+    - icon: key
+      text: Your data stays yours
+
+  features:
+    eyebrow: What you get
+    title: Everything a shop needs. Nothing you rent.
+    lede: A complete shop, not a starter kit. Storefront, checkout and back office work together, and routine work runs by itself.
+    rows:
+      - title: One back office for the whole shop
+        text: See revenue, open payments, orders to ship and products running low at a glance. Change prices, stock and order status in one place, with separate accounts for your team.
+        image: admin-dashboard.webp
+        alt: The back office dashboard with net revenue, awaiting payments, outstanding shipments, stock warnings and the order mix.
+        frame: admin
+      - title: A storefront customers enjoy
+        text: Fast product pages, a clear bag and a checkout that just works on the phone. Customers can create an account and see their orders.
+        image: store-product.webp
+        alt: A product page in the OpenTaberna storefront for Barolo Riserva with price and "Add to bag" button.
+        frame: store
+    items:
+      - icon: box
+        title: Catalogue and images
+        text: Products with prices, images, brands and categories, ready for search engines.
+      - icon: card
+        title: Checkout with Stripe
+        text: Card and wallet payments through Stripe, with stock reserved while customers pay.
+      - icon: truck
+        title: DHL shipping
+        text: Paid orders become shipments and labels without typing addresses twice.
+      - icon: layers
+        title: Stock and returns
+        text: Live stock per product, low-stock warnings and a returns process for your customers.
+      - icon: receipt
+        title: Documents filed for you
+        text: Invoices and accounting documents land in Paperless-ngx automatically.
+      - icon: user
+        title: Customer accounts
+        text: Secure sign-in for customers and staff, with roles for your team.
+
+  offers:
+    eyebrow: Three ways to run it
+    title: Pick how much you want to do yourself.
+    lede: The software is the same in every case. What changes is who does the work.
+    items:
+      - name: Do it yourself
+        price: Free
+        text: For teams with their own developer or administrator.
+        points:
+          - The complete shop, free and open source
+          - Step-by-step documentation in the wiki
+          - Runs on any Linux server with Docker
+        link: https://wiki.opentaberna.de
+        link_text: Read the documentation
+      - name: We set it up on your server
+        price: One-off price
+        text: You keep the server, we do the work.
+        points:
+          - Installation on your server or cloud
+          - Your domain, SSL, payments and shipping connected
+          - Handover and a walkthrough for your team
+        mail: setup
+        link_text: Request a quote
+      - name: We host it for you
+        price: Monthly price
+        text: The least effort. Hosted on our servers in Germany.
+        points:
+          - Servers in Germany, run by us
+          - Updates, backups and monitoring included
+          - Direct support from the people who build it
+        mail: hosting
+        link_text: Request a quote
+        featured: true
+
+  custom:
+    eyebrow: Custom storefront
+    title: Your brand, not a template.
+    text: OpenTaberna is headless, so the storefront is completely replaceable. We design and build one that looks and feels like your brand and runs on the same back office.
+    points:
+      - Designed around your brand, products and customers
+      - Built on the open OpenTaberna API
+      - You own the code, no licence attached
+    cta: Talk about your storefront
+    alt: The shopping bag in the OpenTaberna storefront with three wines and an order summary.
+
+  compare:
+    eyebrow: Why not Shopware or Shopify?
+    title: The same shop, without the running costs.
+    columns: [OpenTaberna, Shopware, Shopify]
+    rows:
+      - label: Software licence
+        cells:
+          - Free, Apache-2.0
+          - Community Edition free (MIT); paid plans from €600 a month
+          - Plans from €36 a month (Basic, billed monthly)
+      - label: Fees tied to your sales
+        cells:
+          - None
+          - Paid plans are priced on your revenue; Community Edition shops above €1 million a year need a paid plan to keep Shopware Account and Store access
+          - Up to 2% extra per sale if you do not use Shopify Payments
+      - label: Where it runs
+        cells:
+          - Your server, or ours in Germany
+          - Your server or Shopware's cloud
+          - Shopify's cloud only
+      - label: Source code
+        cells:
+          - Open, every component
+          - Open core (Community Edition)
+          - Closed
+    sources_label: "Sources, as published in September 2026:"
+    sources:
+      - text: Shopware pricing
+        url: https://www.shopware.com/en/pricing/
+      - text: Shopware Fair Usage Policy
+        url: https://www.shopware.com/en/news/fair-usage-policy-community-edition/
+      - text: Shopify pricing
+        url: https://www.shopify.com/pricing
+
+  faq:
+    eyebrow: Questions
+    title: Before you write to us
+    items:
+      - q: Is OpenTaberna really free?
+        a: Yes. Every part is open source under the Apache-2.0 licence. You can run it, change it and even sell it on. You only pay us if you want help with setup, hosting or a custom storefront.
+      - q: What does hosting cost?
+        a: That depends on the size of your shop. Tell us what you sell and roughly how many orders you expect, and we send you a fixed price.
+      - q: Can I move away later?
+        a: Yes. The code is open and your data sits in a standard PostgreSQL database, so any developer can take over. If we host your shop, you can take a full copy with you.
+      - q: What do I need to run it myself?
+        a: A Linux server with Docker, a domain, a Stripe account for payments and, if you ship with DHL, a DHL business account. The wiki walks you through the rest.
+      - q: What can you build for the storefront?
+        a: Anything from adapting the included storefront to your brand to a completely new design. Both run on the same back office and API.
+      - q: Is it ready for my shop?
+        a: OpenTaberna is young. Today it covers catalogue, Stripe checkout, stock, orders, returns, DHL shipping and accounting documents. Tell us what you sell and we will tell you honestly whether it fits.
+
+  get_started:
+    title: Tell us about your shop.
+    text: Write a few lines about what you sell. We answer personally, usually within two working days.
+    cta: Get your shop
+    or: or write to
+
+  founders:
+    eyebrow: Who is behind it
+    title: Built by two founders who needed it themselves.
+    text: We started OpenTaberna because Shopware was expensive and hard to connect to everything we needed. Setup, hosting and custom storefronts are provided by vaultops.
+    people:
+      - name: Philipp Lehmann
+        url: https://philipptheserver.com
+        role: Founder · vaultops
+        text: Infrastructure engineer. Runs the servers your shop would live on.
+        links:
+          - text: GitHub
+            url: https://github.com/PhilippTheServer
+          - text: ORCID
+            url: https://orcid.org/0009-0002-3922-2471
+      - name: Malte Kottmann
+        url: https://github.com/maltonoloco
+        role: Founder
+        text: OpenTaberna founder and contributor.
+        links:
+          - text: GitHub
+            url: https://github.com/maltonoloco
+
+de:
+  home: /de/
+  developers: /de/entwickler/
+  skip: Zum Inhalt springen
+  brand_note: Open-Source-E-Commerce
+  nav_features: Funktionen
+  nav_services: Leistungen
+  nav_developers: Entwickler
+  nav_cta: Shop anfragen
+  lang_switch: English
+  lang_switch_code: en
+  foot_tagline: Ein freies Open-Source-Shopsystem. Einrichtung, Hosting in Deutschland und individuelle Storefronts von vaultops.
+  foot_project: Projekt
+  foot_legal: Rechtliches
+  foot_contact: Kontakt
+  foot_machines: Für Maschinen
+  legal_notice: Impressum
+  privacy: Datenschutz
+  frame_store: Deine Storefront
+  frame_admin: Dein Backoffice
+
+  mail:
+    general:
+      subject: "OpenTaberna: Ich möchte einen eigenen Shop"
+      body: "Hallo,\n\nich interessiere mich für einen Shop mit OpenTaberna.\n\nWas ich verkaufe:\nAnzahl Produkte:\nBestellungen pro Monat (ungefähr):\nAktuelles Shopsystem, falls vorhanden:\nZeitrahmen:\n\nViele Grüße\n"
+    setup:
+      subject: "OpenTaberna: Einrichtung auf meinem Server"
+      body: "Hallo,\n\nbitte schickt mir ein Angebot für die Einrichtung von OpenTaberna auf meinem eigenen Server.\n\nServer / Anbieter:\nWas ich verkaufe:\nAnzahl Produkte:\nZahlungs- und Versanddienstleister:\nZeitrahmen:\n\nViele Grüße\n"
+    hosting:
+      subject: "OpenTaberna: Hosting für meinen Shop"
+      body: "Hallo,\n\nbitte schickt mir ein Angebot für das Hosting eines OpenTaberna-Shops.\n\nWas ich verkaufe:\nAnzahl Produkte:\nBestellungen pro Monat (ungefähr):\nDomain (vorhanden oder gewünscht):\nZeitrahmen:\n\nViele Grüße\n"
+    frontend:
+      subject: "OpenTaberna: individuelle Storefront"
+      body: "Hallo,\n\nich hätte gern eine individuelle Storefront für OpenTaberna.\n\nMarke / heutige Website:\nDesigns oder Beispiele, die mir gefallen:\nSeiten und Funktionen, die ich brauche:\nZeitrahmen:\n\nViele Grüße\n"
+
+  hero:
+    eyebrow: Headless-Shopsystem · selbst gehostet · kostenlos
+    title: Dein eigener Open-Source-Shop. Ohne Lizenzkosten. Ohne Lock-in.
+    lede: OpenTaberna ist ein moderner Webshop, den du kostenlos auf deinem eigenen Server betreibst. Oder wir richten ihn ein, hosten ihn in Deutschland und gestalten eine Storefront, die zu deiner Marke passt.
+    cta: Shop anfragen
+    secondary: Sieh dir an, was drin ist
+    note: Freie Software. Du zahlst nur für die Hilfe, die du willst.
+    shop_alt: Die OpenTaberna-Storefront mit einem Produktraster aus Weinen und Feinkost, Preisen und „Add to bag“-Buttons.
+    admin_alt: Das Dashboard des OpenTaberna-Backoffice mit Umsatz, offenen Zahlungen, ausstehenden Sendungen und Produkten, die nachbestellt werden müssen.
+
+  trust:
+    - icon: gift
+      text: Für immer kostenlos
+    - icon: code
+      text: Open Source, Apache-2.0
+    - icon: flag
+      text: Gehostet in Deutschland
+    - icon: key
+      text: Deine Daten bleiben deine
+
+  features:
+    eyebrow: Was du bekommst
+    title: Alles, was ein Shop braucht. Nichts davon gemietet.
+    lede: Ein kompletter Shop, kein Baukasten. Storefront, Checkout und Backoffice arbeiten zusammen, und Routinearbeit läuft von allein.
+    rows:
+      - title: Ein Backoffice für den ganzen Shop
+        text: Umsatz, offene Zahlungen, zu versendende Bestellungen und knappe Produkte auf einen Blick. Preise, Bestand und Bestellstatus an einem Ort ändern, mit eigenen Zugängen für dein Team.
+        image: admin-dashboard.webp
+        alt: Das Backoffice-Dashboard mit Nettoumsatz, offenen Zahlungen, ausstehenden Sendungen, Bestandswarnungen und Bestellmix.
+        frame: admin
+      - title: Eine Storefront, die Kunden gern nutzen
+        text: Schnelle Produktseiten, ein übersichtlicher Warenkorb und ein Checkout, der auch auf dem Handy funktioniert. Kundinnen und Kunden können ein Konto anlegen und ihre Bestellungen sehen.
+        image: store-product.webp
+        alt: Eine Produktseite der OpenTaberna-Storefront für Barolo Riserva mit Preis und „Add to bag“-Button.
+        frame: store
+    items:
+      - icon: box
+        title: Katalog und Bilder
+        text: Produkte mit Preisen, Bildern, Marken und Kategorien, bereit für Suchmaschinen.
+      - icon: card
+        title: Checkout mit Stripe
+        text: Karten- und Wallet-Zahlungen über Stripe, der Bestand bleibt während der Zahlung reserviert.
+      - icon: truck
+        title: DHL-Versand
+        text: Bezahlte Bestellungen werden zu Sendungen und Labels, ohne Adressen doppelt abzutippen.
+      - icon: layers
+        title: Bestand und Retouren
+        text: Live-Bestand pro Produkt, Warnungen bei knapper Ware und ein Retourenprozess für deine Kundschaft.
+      - icon: receipt
+        title: Belege automatisch abgelegt
+        text: Rechnungen und Buchhaltungsbelege landen automatisch in Paperless-ngx.
+      - icon: user
+        title: Kundenkonten
+        text: Sichere Anmeldung für Kundschaft und Team, mit Rollen für deine Mitarbeitenden.
+
+  offers:
+    eyebrow: Drei Wege zum eigenen Shop
+    title: Du entscheidest, wie viel du selbst machst.
+    lede: Die Software ist in jedem Fall dieselbe. Es ändert sich nur, wer die Arbeit macht.
+    items:
+      - name: Selbst betreiben
+        price: Kostenlos
+        text: Für Teams mit eigener Entwicklerin oder eigenem Administrator.
+        points:
+          - Der komplette Shop, kostenlos und Open Source
+          - Schritt-für-Schritt-Dokumentation im Wiki
+          - Läuft auf jedem Linux-Server mit Docker
+        link: https://wiki.opentaberna.de
+        link_text: Zur Dokumentation
+      - name: Wir richten ihn auf deinem Server ein
+        price: Einmaliger Preis
+        text: Der Server bleibt deiner, die Arbeit machen wir.
+        points:
+          - Installation auf deinem Server oder in deiner Cloud
+          - Domain, SSL, Zahlung und Versand angebunden
+          - Übergabe und Einweisung für dein Team
+        mail: setup
+        link_text: Angebot anfragen
+      - name: Wir hosten ihn für dich
+        price: Monatlicher Preis
+        text: Der geringste Aufwand. Gehostet auf unseren Servern in Deutschland.
+        points:
+          - Server in Deutschland, von uns betrieben
+          - Updates, Backups und Monitoring inklusive
+          - Direkter Support von den Leuten, die ihn bauen
+        mail: hosting
+        link_text: Angebot anfragen
+        featured: true
+
+  custom:
+    eyebrow: Individuelle Storefront
+    title: Deine Marke, kein Template.
+    text: OpenTaberna ist headless, die Storefront ist also komplett austauschbar. Wir gestalten und bauen eine, die aussieht und sich anfühlt wie deine Marke, auf demselben Backoffice.
+    points:
+      - Gestaltet rund um deine Marke, deine Produkte und deine Kundschaft
+      - Gebaut auf der offenen OpenTaberna-API
+      - Der Code gehört dir, ohne Lizenzgebühren
+    cta: Über deine Storefront sprechen
+    alt: Der Warenkorb der OpenTaberna-Storefront mit drei Weinen und einer Bestellübersicht.
+
+  compare:
+    eyebrow: Warum nicht Shopware oder Shopify?
+    title: Derselbe Shop, ohne laufende Kosten.
+    columns: [OpenTaberna, Shopware, Shopify]
+    rows:
+      - label: Softwarelizenz
+        cells:
+          - Kostenlos, Apache-2.0
+          - Community Edition kostenlos (MIT); bezahlte Pläne ab 600 € im Monat
+          - Pläne ab 36 € im Monat (Basic, monatliche Zahlung)
+      - label: Gebühren auf deinen Umsatz
+        cells:
+          - Keine
+          - Bezahlte Pläne richten sich nach deinem Umsatz; Shops mit Community Edition über 1 Mio. € Jahresumsatz brauchen einen bezahlten Plan, um Shopware Account und Store weiter zu nutzen
+          - Bis zu 2 % zusätzlich pro Verkauf, wenn du nicht Shopify Payments nutzt
+      - label: Wo er läuft
+        cells:
+          - Dein Server oder unserer in Deutschland
+          - Dein Server oder die Cloud von Shopware
+          - Nur in der Cloud von Shopify
+      - label: Quellcode
+        cells:
+          - Offen, jede Komponente
+          - Open Core (Community Edition)
+          - Geschlossen
+    sources_label: "Quellen, Stand September 2026:"
+    sources:
+      - text: Shopware-Preise
+        url: https://www.shopware.com/de/preise/
+      - text: Shopware Fair Usage Policy
+        url: https://www.shopware.com/en/news/fair-usage-policy-community-edition/
+      - text: Shopify-Preise
+        url: https://www.shopify.com/de/preise
+
+  faq:
+    eyebrow: Fragen
+    title: Bevor du uns schreibst
+    items:
+      - q: Ist OpenTaberna wirklich kostenlos?
+        a: Ja. Jeder Teil ist Open Source unter der Apache-2.0-Lizenz. Du darfst ihn betreiben, verändern und sogar weiterverkaufen. Du zahlst uns nur, wenn du Hilfe bei Einrichtung, Hosting oder einer eigenen Storefront willst.
+      - q: Was kostet das Hosting?
+        a: Das hängt von der Größe deines Shops ab. Schreib uns, was du verkaufst und wie viele Bestellungen du ungefähr erwartest, und du bekommst einen festen Preis.
+      - q: Kann ich später wechseln?
+        a: Ja. Der Code ist offen und deine Daten liegen in einer normalen PostgreSQL-Datenbank, also kann jede Entwicklerin und jeder Entwickler übernehmen. Wenn wir deinen Shop hosten, bekommst du eine vollständige Kopie mit.
+      - q: Was brauche ich, um ihn selbst zu betreiben?
+        a: Einen Linux-Server mit Docker, eine Domain, ein Stripe-Konto für Zahlungen und, wenn du mit DHL versendest, ein DHL-Geschäftskundenkonto. Das Wiki führt dich durch den Rest.
+      - q: Was könnt ihr für die Storefront bauen?
+        a: Von der Anpassung der mitgelieferten Storefront an deine Marke bis zu einem komplett neuen Design. Beides läuft auf demselben Backoffice und derselben API.
+      - q: Ist er bereit für meinen Shop?
+        a: OpenTaberna ist jung. Heute deckt es Katalog, Stripe-Checkout, Bestand, Bestellungen, Retouren, DHL-Versand und Buchhaltungsbelege ab. Schreib uns, was du verkaufst, und wir sagen dir ehrlich, ob es passt.
+
+  get_started:
+    title: Erzähl uns von deinem Shop.
+    text: Schreib ein paar Zeilen dazu, was du verkaufst. Wir antworten persönlich, meist innerhalb von zwei Werktagen.
+    cta: Shop anfragen
+    or: oder schreib an
+
+  founders:
+    eyebrow: Wer dahintersteht
+    title: Gebaut von zwei Gründern, die es selbst gebraucht haben.
+    text: Wir haben OpenTaberna gestartet, weil Shopware teuer war und sich kaum mit dem verbinden ließ, was wir brauchten. Einrichtung, Hosting und individuelle Storefronts bietet vaultops an.
+    people:
+      - name: Philipp Lehmann
+        url: https://philipptheserver.com
+        role: Gründer · vaultops
+        text: Infrastruktur-Engineer. Betreibt die Server, auf denen dein Shop laufen würde.
+        links:
+          - text: GitHub
+            url: https://github.com/PhilippTheServer
+          - text: ORCID
+            url: https://orcid.org/0009-0002-3922-2471
+      - name: Malte Kottmann
+        url: https://github.com/maltonoloco
+        role: Gründer
+        text: Gründer von und Mitwirkender an OpenTaberna.
+        links:
+          - text: GitHub
+            url: https://github.com/maltonoloco

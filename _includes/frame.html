@@ -1,0 +1,4 @@
+<figure class="frame{% if include.class %} {{ include.class }}{% endif %}">
+  <div class="frame-bar" aria-hidden="true"><span></span><span></span><span></span><em>{{ include.label }}</em></div>
+  <img src="/assets/img/{{ include.image }}" alt="{{ include.alt | escape }}" width="1600" height="{{ include.height | default: 1000 }}" loading="{{ include.loading | default: 'lazy' }}" decoding="async">
+</figure>

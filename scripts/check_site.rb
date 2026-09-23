@@ -39,10 +39,19 @@ rescue URI::InvalidURIError
   nil
 end
 
-required = %w[
-  index.html de/index.html robots.txt llms.txt sitemap.xml CNAME
-  assets/css/site.css wiki/taberna_logo.png
-]
+PAGES = {
+  "index.html" => { url: "/", lang: "en", locale: "en_GB", pair: "/de/" },
+  "de/index.html" => { url: "/de/", lang: "de", locale: "de_DE", pair: "/" },
+  "developers/index.html" => { url: "/developers/", lang: "en", locale: "en_GB", pair: "/de/entwickler/" },
+  "de/entwickler/index.html" => { url: "/de/entwickler/", lang: "de", locale: "de_DE", pair: "/developers/" },
+  "impressum/index.html" => { url: "/impressum/", lang: "de", locale: "de_DE" },
+  "datenschutz/index.html" => { url: "/datenschutz/", lang: "de", locale: "de_DE" },
+}.freeze
+LANDING = %w[index.html de/index.html].freeze
+DEVELOPERS = %w[developers/index.html de/entwickler/index.html].freeze
+CONTACT = "mailto:root@vaultops.de"
+
+required = PAGES.keys + %w[robots.txt llms.txt sitemap.xml CNAME assets/css/site.css wiki/taberna_logo.png]
 required.each do |path|
   fail!("#{path}: missing from the built site") unless File.file?(File.join(SITE, path))
 end
@@ -59,36 +68,37 @@ if robots
 end
 
 sitemap = read("sitemap.xml")
-if sitemap && !sitemap.include?("https://#{DOMAIN}/")
-  fail!("sitemap.xml: does not contain the canonical site URL")
-end
-if sitemap && !sitemap.include?("https://#{DOMAIN}/de/")
-  fail!("sitemap.xml: does not contain the German page")
+if sitemap
+  PAGES.each_value do |page|
+    fail!("sitemap.xml: does not contain #{page[:url]}") unless sitemap.include?("<loc>https://#{DOMAIN}#{page[:url]}</loc>")
+  end
 end
 
-languages = {
-  "index.html" => { lang: "en", locale: "en_GB", switch: "/de/" },
-  "de/index.html" => { lang: "de", locale: "de_DE", switch: "/" },
-}
-languages.each do |path, expected|
+PAGES.each do |path, page|
   html = read(path)
   next unless html
 
-  fail!("#{path}: <html> is not lang=\"#{expected[:lang]}\"") unless html.include?(%(<html lang="#{expected[:lang]}">))
-  fail!("#{path}: og:locale is not #{expected[:locale]}") unless html.include?(%(<meta property="og:locale" content="#{expected[:locale]}">))
-  { "en" => "https://#{DOMAIN}/", "de" => "https://#{DOMAIN}/de/", "x-default" => "https://#{DOMAIN}/" }.each do |hreflang, href|
-    unless html.include?(%(<link rel="alternate" hreflang="#{hreflang}" href="#{href}">))
+  fail!("#{path}: <html> is not lang=\"#{page[:lang]}\"") unless html.include?(%(<html lang="#{page[:lang]}">))
+  fail!("#{path}: og:locale is not #{page[:locale]}") unless html.include?(%(<meta property="og:locale" content="#{page[:locale]}">))
+  %w[/impressum/ /datenschutz/].each do |legal|
+    fail!("#{path}: footer has lost the link to #{legal}") unless html[%r{<footer.*</footer>}m].to_s.include?(%(href="#{legal}"))
+  end
+  next unless page[:pair]
+
+  en, de = page[:lang] == "en" ? [page[:url], page[:pair]] : [page[:pair], page[:url]]
+  { "en" => en, "de" => de, "x-default" => en }.each do |hreflang, url|
+    unless html.include?(%(<link rel="alternate" hreflang="#{hreflang}" href="https://#{DOMAIN}#{url}">))
       fail!("#{path}: has lost the hreflang=#{hreflang} alternate")
     end
   end
-  fail!("#{path}: has lost the language switch to #{expected[:switch]}") unless html.match?(/<a class="[^"]*\blang-switch\b[^"]*"[^>]*href="#{Regexp.escape(expected[:switch])}"/)
+  fail!("#{path}: has lost the language switch to #{page[:pair]}") unless html.match?(/<a class="[^"]*\blang-switch\b[^"]*"[^>]*href="#{Regexp.escape(page[:pair])}"/)
 end
 
 STACK = [
   "FastAPI", "PostgreSQL", "Redis", "Keycloak", "Angular", "Stripe", "DHL",
   "Paperless-ngx", "MinIO", "Prometheus", "Grafana", "OpenTelemetry", "Docker Compose",
 ].freeze
-{ "index.html" => "What it runs on", "de/index.html" => "Worauf es läuft", "llms.txt" => "## Stack" }.each do |path, heading|
+{ "developers/index.html" => "What it runs on", "de/entwickler/index.html" => "Worauf es läuft", "llms.txt" => "## Stack" }.each do |path, heading|
   text = read(path)
   next unless text
 
@@ -96,13 +106,35 @@ STACK = [
   STACK.each { |term| fail!("#{path}: stack section has lost #{term.inspect}") unless text.include?(term) }
 end
 
-german = read("de/index.html")
-if german
-  h1 = german[%r{<h1[^>]*>(.*?)</h1>}m, 1].to_s.downcase
-  %w[open-source shopsystem].each { |term| fail!("de/index.html: h1 has lost #{term.inspect}") unless h1.include?(term) }
-  description = german[/<meta name="description" content="([^"]*)"/, 1].to_s.downcase
-  %w[open-source selbst gehostet webshop shopware].each do |term|
-    fail!("de/index.html: meta description has lost #{term.inspect}") unless description.include?(term)
+DEVELOPERS.each do |path|
+  html = read(path)
+  next unless html
+
+  %w[
+    https://github.com/OpenTaberna/fastapi
+    https://github.com/OpenTaberna/frontend
+    https://github.com/OpenTaberna/admin_frontend
+    https://github.com/OpenTaberna/wiki
+    https://wiki.opentaberna.de
+    https://github.com/OpenTaberna/wiki/blob/main/Getting-Started.md
+  ].each { |url| fail!("#{path}: has lost #{url}") unless html.include?(%[href="#{url}"]) }
+end
+
+SEARCH_TERMS = {
+  "index.html" => { "title" => %w[open-source self-hosted headless shop], "meta description" => %w[open-source self-hosted headless shop], "h1" => %w[open-source shop] },
+  "de/index.html" => { "meta description" => ["open-source", "selbst gehostet", "webshop", "shopware"], "h1" => %w[open-source shop] },
+}.freeze
+SEARCH_TERMS.each do |path, fields|
+  html = read(path)
+  next unless html
+
+  texts = {
+    "title" => html[%r{<title>(.*?)</title>}m, 1],
+    "meta description" => html[/<meta name="description" content="([^"]*)"/, 1],
+    "h1" => html[%r{<h1[^>]*>(.*?)</h1>}m, 1],
+  }
+  fields.each do |field, terms|
+    terms.each { |term| fail!("#{path}: #{field} has lost the search term #{term.inspect}") unless texts[field].to_s.downcase.include?(term) }
   end
 end
 
@@ -174,46 +206,64 @@ if organization
   end
 end
 
-index = read("index.html")
-if index
-  fail!("index.html: has lost the Philipp Lehmann website link") unless index.include?('href="https://philipptheserver.com"')
-  fail!("index.html: has lost the maltonoloco GitHub link") unless index.include?('href="https://github.com/maltonoloco"')
+SECTIONS = %w[hero trust features offers custom-frontend compare faq get-started founders].freeze
+LANDING.each do |path|
+  html = read(path)
+  next unless html
 
-  sections = [
-    "What OpenTaberna is",
-    "What it is made of",
-    "What it runs on",
-    "How to start",
-    "Licence and intent",
-    "Founders",
-    "Contact",
-  ]
-  positions = sections.map { |heading| [heading, index.index(heading)] }
-  positions.each { |heading, position| fail!("index.html: has lost the #{heading.inspect} section") if position.nil? }
-  present_positions = positions.map(&:last).compact
-  fail!("index.html: required sections are out of order") unless present_positions == present_positions.sort
+  positions = SECTIONS.map { |id| [id, html.index(%(id="#{id}"))] }
+  positions.each { |id, position| fail!("#{path}: has lost the ##{id} section") if position.nil? }
+  present = positions.map(&:last).compact
+  fail!("#{path}: landing sections are out of order") unless present == present.sort
 
-  title = index[%r{<title>(.*?)</title>}m, 1].to_s
-  description = index[/<meta name="description" content="([^"]*)"/, 1].to_s
-  h1 = index[%r{<h1[^>]*>(.*?)</h1>}m, 1].to_s
-  {
-    "title" => [title, %w[open-source self-hosted headless shop]],
-    "meta description" => [description, %w[open-source self-hosted headless shop]],
-    "h1" => [h1, %w[open-source headless shop]],
-  }.each do |name, (text, terms)|
-    terms.each { |term| fail!("index.html: #{name} has lost the search term #{term.inspect}") unless text.downcase.include?(term) }
+  subjects = html.scan(/href="#{Regexp.escape(CONTACT)}\?subject=([^"&]+)/).flatten.uniq
+  fail!("#{path}: needs pre-filled emails for setup, hosting, custom frontend and a general enquiry, found #{subjects.length}") if subjects.length < 4
+
+  section = ->(id) { html[%r{id="#{id}".*?</section>}m].to_s }
+  fail!("#{path}: hero has lost its email call to action") unless section.call("hero").include?(%(href="#{CONTACT}?subject=))
+  fail!("#{path}: closing call to action has lost its email link") unless section.call("get-started").include?(%(href="#{CONTACT}?subject=))
+  offers = section.call("offers")
+  fail!("#{path}: offers need two quote requests") if offers.scan(%(href="#{CONTACT}?subject=)).length < 2
+  fail!("#{path}: do-it-yourself offer has lost the wiki link") unless offers.include?('href="https://wiki.opentaberna.de"')
+  fail!("#{path}: custom-frontend section has lost its quote request") unless section.call("custom-frontend").include?(%(href="#{CONTACT}?subject=))
+  compare = section.call("compare")
+  %w[https://www.shopware.com https://www.shopify.com].each do |source|
+    fail!("#{path}: comparison has lost its source #{source}") unless compare.include?(%(href="#{source}))
   end
+  fail!("#{path}: has lost the Philipp Lehmann website link") unless html.include?('href="https://philipptheserver.com"')
+  fail!("#{path}: has lost the maltonoloco GitHub link") unless html.include?('href="https://github.com/maltonoloco"')
+end
 
-  %w[
-    https://github.com/OpenTaberna/fastapi
-    https://github.com/OpenTaberna/frontend
-    https://github.com/OpenTaberna/admin_frontend
-    https://github.com/OpenTaberna/wiki
-    https://wiki.opentaberna.de
-    https://github.com/OpenTaberna/wiki/blob/main/Getting-Started.md
-  ].each do |url|
-    fail!("index.html: has lost #{url}") unless index.include?(%[href="#{url}"])
+impressum = read("impressum/index.html")
+if impressum
+  ["§ 5 DDG", "§ 18 Abs. 2 MStV", "Philipp Lehmann", "Semperstraße 115", "44801 Bochum", "DE454384537", "root@vaultops.de"].each do |fact|
+    fail!("impressum: has lost #{fact.inspect}") unless impressum.include?(fact)
   end
+end
+
+privacy = read("datenschutz/index.html")
+if privacy
+  ["GitHub", "Data Privacy Framework", "Philipp Lehmann", "root@vaultops.de"].each do |fact|
+    fail!("datenschutz: has lost #{fact.inspect}") unless privacy.include?(fact)
+  end
+end
+
+# The site promises visitors that nothing loads from a third party, which is why it
+# needs no consent banner. Any external script, stylesheet, font or image breaks that.
+css = read("assets/css/site.css").to_s
+fail!("site.css: loads something from another origin") if css.match?(%r{url\(\s*["']?(?:https?:)?//|@import}i)
+html_files.each do |path|
+  relative = path.delete_prefix("#{SITE}/")
+  html = File.read(path)
+  fail!("#{relative}: loads a resource from another origin") if html.match?(%r{<(?:script|img|iframe|source|video|audio)\b[^>]*\bsrc="(?:https?:)?//}i) ||
+                                                                  html.match?(%r{<link\b(?=[^>]*\brel="(?:stylesheet|preload|icon|modulepreload)")[^>]*\bhref="(?:https?:)?//}i)
+  html.scan(/<img\b[^>]*>/).each do |tag|
+    src = tag[/\bsrc="([^"]*)"/, 1]
+    next unless src&.start_with?("/assets/img/")
+
+    fail!("#{relative}: #{src} has no alt text") if tag[/\balt="([^"]*)"/, 1].to_s.strip.empty?
+  end
+  fail!("#{relative}: links to the demo shop, which does not exist yet") if html.include?("demo.opentaberna")
 end
 
 # Resolve every local href and src against the build. html-proofer performs a second,

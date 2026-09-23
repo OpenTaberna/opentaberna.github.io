@@ -7,7 +7,15 @@ sitemap: false
 
 > OpenTaberna is an open-source, self-hosted headless shop system: build a modern, custom web shop and automate e-commerce end to end. A free Shopware alternative. The project exists as an open alternative to expensive, hard-to-integrate commerce platforms such as Shopware.
 
-A German version of the website is at {{ site.url }}/de/.
+## Pages
+
+- [Home]({{ site.url }}/) and [German home]({{ site.url }}/de/): what OpenTaberna is, what a shop gets, services, comparison with Shopware and Shopify, FAQ.
+- [Developers]({{ site.url }}/developers/) and [Entwickler]({{ site.url }}/de/entwickler/): repositories, stack, documentation, licence.
+- [Impressum]({{ site.url }}/impressum/) and [Datenschutz]({{ site.url }}/datenschutz/): legal notice and privacy policy (German).
+
+## Services
+
+The software is free. vaultops (Philipp Lehmann, Bochum, Germany) offers paid help: setting OpenTaberna up on the customer's own server, hosting it on vaultops servers in Germany, and designing and building custom storefronts. Enquiries: root@vaultops.de.
 
 ## Project repositories
 
@@ -32,7 +40,7 @@ The [OpenTaberna wiki](https://wiki.opentaberna.de) is the project's documentati
 
 ## Licence and intent
 
-OpenTaberna is entirely open source. The founders are not seeking to make money from the project. People may run, fork, maintain or sell it on, subject to the licences in its repositories.
+OpenTaberna is entirely open source; every repository is licensed under Apache-2.0. People may run, fork, maintain or sell it on. The software stays free; only the services above are paid.
 
 ## Founders
 
