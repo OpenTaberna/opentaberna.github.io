@@ -93,6 +93,7 @@ a:hover { text-decoration-thickness: 2px; }
 .brand > span { display: grid; }
 .brand-name { font-weight: 720; letter-spacing: -0.02em; line-height: 1.2; }
 .brand-note { color: var(--fg-muted); font-family: var(--mono); font-size: 0.7rem; }
+.header-nav { display: flex; gap: 1.25rem; }
 .header-link { color: var(--fg-muted); font-size: 0.92rem; text-decoration: none; }
 .header-link:hover { color: var(--fg); }
 

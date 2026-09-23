@@ -5,6 +5,14 @@ Jekyll, is built and verified by GitHub Actions, and is deployed to GitHub Pages
 The project documentation remains in the
 [OpenTaberna wiki](https://wiki.opentaberna.de).
 
+## Languages
+
+`index.md` is the English page at `/`, `de/index.md` the German page at `/de/`.
+Both carry `hreflang` alternates and a language switch; the layout picks its few
+interface strings from the page's `lang`. A content change to one page belongs in
+the other in the same change. `check_site.rb` fails if the German page, its
+alternates or its search terms go missing.
+
 ## Local verification
 
 Install Ruby 3.3 and Bundler, then run:
