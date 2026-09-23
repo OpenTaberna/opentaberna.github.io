@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang }}">
+{%- assign de = page.lang == "de" -%}
+<html lang="{{ page.lang | default: site.lang }}">
 {%- include head.html -%}
 <body>
-  <a class="skip-link" href="#content">Skip to content</a>
+  <a class="skip-link" href="#content">{% if de %}Zum Inhalt springen{% else %}Skip to content{% endif %}</a>
 
   <header class="masthead">
-    <a class="brand" href="{{ '/' | relative_url }}" aria-label="OpenTaberna home">
+    <a class="brand" href="{{ page.url }}" aria-label="{% if de %}OpenTaberna Startseite{% else %}OpenTaberna home{% endif %}">
       <img src="{{ '/wiki/taberna_logo.png' | relative_url }}" alt="" width="42" height="42">
       <span>
         <span class="brand-name">OpenTaberna</span>
-        <span class="brand-note">Open-source commerce</span>
+        <span class="brand-note">{% if de %}Open-Source-E-Commerce{% else %}Open-source commerce{% endif %}</span>
       </span>
     </a>
-    <a class="header-link" href="{{ site.organization.github }}">GitHub</a>
+    <nav class="header-nav">
+      {%- if de %}
+      <a class="header-link lang-switch" href="{{ '/' | relative_url }}" hreflang="en" lang="en">English</a>
+      {%- else %}
+      <a class="header-link lang-switch" href="{{ '/de/' | relative_url }}" hreflang="de" lang="de">Deutsch</a>
+      {%- endif %}
+      <a class="header-link" href="{{ site.organization.github }}">GitHub</a>
+    </nav>
   </header>
 
   <main id="content" class="content">
@@ -22,14 +30,14 @@
   <footer class="site-foot">
     <div>
       <p class="footer-label">OpenTaberna</p>
-      <p>Headless commerce, open from end to end.</p>
+      <p>{% if de %}Headless-Commerce, offen von Anfang bis Ende.{% else %}Headless commerce, open from end to end.{% endif %}</p>
     </div>
     <div>
-      <p class="footer-label">For machines</p>
+      <p class="footer-label">{% if de %}Für Maschinen{% else %}For machines{% endif %}</p>
       <p><a href="{{ '/llms.txt' | relative_url }}">llms.txt</a> · <a href="{{ '/sitemap.xml' | relative_url }}">sitemap.xml</a></p>
     </div>
     <div>
-      <p class="footer-label">Contact</p>
+      <p class="footer-label">{% if de %}Kontakt{% else %}Contact{% endif %}</p>
       <p><a href="mailto:{{ site.organization.email }}">{{ site.organization.email }}</a></p>
     </div>
   </footer>

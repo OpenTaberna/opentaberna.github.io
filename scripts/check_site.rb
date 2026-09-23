@@ -40,7 +40,7 @@ rescue URI::InvalidURIError
 end
 
 required = %w[
-  index.html robots.txt llms.txt sitemap.xml CNAME
+  index.html de/index.html robots.txt llms.txt sitemap.xml CNAME
   assets/css/site.css wiki/taberna_logo.png
 ]
 required.each do |path|
@@ -61,6 +61,37 @@ end
 sitemap = read("sitemap.xml")
 if sitemap && !sitemap.include?("https://#{DOMAIN}/")
   fail!("sitemap.xml: does not contain the canonical site URL")
+end
+if sitemap && !sitemap.include?("https://#{DOMAIN}/de/")
+  fail!("sitemap.xml: does not contain the German page")
+end
+
+languages = {
+  "index.html" => { lang: "en", locale: "en_GB", switch: "/de/" },
+  "de/index.html" => { lang: "de", locale: "de_DE", switch: "/" },
+}
+languages.each do |path, expected|
+  html = read(path)
+  next unless html
+
+  fail!("#{path}: <html> is not lang=\"#{expected[:lang]}\"") unless html.include?(%(<html lang="#{expected[:lang]}">))
+  fail!("#{path}: og:locale is not #{expected[:locale]}") unless html.include?(%(<meta property="og:locale" content="#{expected[:locale]}">))
+  { "en" => "https://#{DOMAIN}/", "de" => "https://#{DOMAIN}/de/", "x-default" => "https://#{DOMAIN}/" }.each do |hreflang, href|
+    unless html.include?(%(<link rel="alternate" hreflang="#{hreflang}" href="#{href}">))
+      fail!("#{path}: has lost the hreflang=#{hreflang} alternate")
+    end
+  end
+  fail!("#{path}: has lost the language switch to #{expected[:switch]}") unless html.match?(/<a class="[^"]*\blang-switch\b[^"]*"[^>]*href="#{Regexp.escape(expected[:switch])}"/)
+end
+
+german = read("de/index.html")
+if german
+  h1 = german[%r{<h1[^>]*>(.*?)</h1>}m, 1].to_s.downcase
+  %w[open-source shopsystem].each { |term| fail!("de/index.html: h1 has lost #{term.inspect}") unless h1.include?(term) }
+  description = german[/<meta name="description" content="([^"]*)"/, 1].to_s.downcase
+  %w[open-source selbst gehostet webshop shopware].each do |term|
+    fail!("de/index.html: meta description has lost #{term.inspect}") unless description.include?(term)
+  end
 end
 
 html_files = Dir.glob(File.join(SITE, "**", "*.html")).sort
